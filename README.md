@@ -89,3 +89,8 @@ Now, when you run the `manifest` using the IF CLI, it will load the model automa
 ```sh
 ie --manifest <path-to-your-impl> --output <path-to-save-output>
 ```
+
+Example for the test manifest file in this repo:
+```sh
+ie --manifest test.yml --output output
+```
