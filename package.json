@@ -1,16 +1,16 @@
 {
-  "name": "if-plugin-template",
-  "description": "Impact Framework plugins template.",
+  "name": "grasp",
+  "description": "Impact Framework plugin to convert a software's carbon emission into easier to 'grasp' values.",
   "version": "v0.1.0",
   "author": {
-    "name": "Green Software Foundation",
-    "email": "info@gsf.com"
+    "name": "hoernschen",
+    "email": "hi@hoernschen.de"
   },
   "bugs": {
-    "url": "https://github.com/Green-Software-Foundation/if-plugin-template/issues/new?assignees=&labels=feedback&projects=&template=feedback.md&title=Feedback+-+"
+    "url": "https://github.com/hoernschen/grasp/issues/new"
   },
   "dependencies": {
-    "typescript": "^5.1.6"
+    "typescript": "^5.4.3"
   },
   "devDependencies": {
     "@babel/core": "7.22.10",
@@ -34,7 +34,7 @@
   "license": "MIT",
   "main": "build/index.js",
   "repository": {
-    "url": "https://github.com/Green-Software-Foundation/if-plugin-template.git"
+    "url": "https://github.com/hoernschen/grasp"
   },
   "scripts": {
     "build": "npm run clean && tsc --project tsconfig.build.json",

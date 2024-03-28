@@ -1,0 +1,49 @@
+name: basic-demo
+description:
+tags:
+initialize:
+  outputs:
+    - yaml
+  plugins:
+    teads-curve: 
+      path: '@grnsft/if-unofficial-plugins'
+      method: TeadsCurve
+      global-config:
+        interpolation: spline
+    sci-e:
+      method: SciE
+      path: '@grnsft/if-plugins'
+    sci-o:
+      method: SciO
+      path: '@grnsft/if-plugins'
+    sci:
+      method: Sci
+      path: '@grnsft/if-plugins'
+      global-config:
+        functional-unit-time: '5 minutes'
+    grasp:
+      method: Grasp
+      path: 'grasp'
+tree:
+  children:
+    child-0:
+      defaults:
+        cpu/thermal-design-power: 100
+        grid/carbon-intensity: 500
+        carbon-embodied: 5
+      pipeline:
+        - teads-curve
+        - sci-e
+        - sci-o
+        - sci
+        - grasp
+      inputs:
+        - timestamp: 2023-07-06T00:00
+          duration: 1
+          cpu/utilization: 20
+        - timestamp: 2023-07-06T00:01
+          duration: 1
+          cpu/utilization: 80
+        - timestamp: 2023-07-06T00:02
+          duration: 1
+          cpu/utilization: 20
