@@ -1,9 +1,9 @@
-import {MyCustomPlugin} from '../../../lib/my-custom-plugin';
+import {Grasp} from '../../../lib/grasp';
 
-describe('lib/my-custom-plugin: ', () => {
-  describe('MyCustomPlugin(): ', () => {
+describe('lib/grasp: ', () => {
+  describe('Grasp(): ', () => {
     it('has metadata field.', () => {
-      const pluginInstance = MyCustomPlugin({});
+      const pluginInstance = Grasp({});
 
       expect(pluginInstance).toHaveProperty('metadata');
       expect(pluginInstance).toHaveProperty('execute');
@@ -13,7 +13,7 @@ describe('lib/my-custom-plugin: ', () => {
 
     describe('execute(): ', () => {
       it('applies logic on provided inputs array.', async () => {
-        const pluginInstance = MyCustomPlugin({});
+        const pluginInstance = Grasp({});
         const inputs = [{}];
 
         const response = await pluginInstance.execute(inputs, {});
