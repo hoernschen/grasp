@@ -1,7 +1,8 @@
-import {YourGlobalConfig} from './types';
+import {ConfigParams} from '../types/general';
 import {PluginInterface, PluginParams} from '../types/interface';
+import {validateConfig, validateInput} from './validation';
 
-export const Grasp = (globalConfig: YourGlobalConfig): PluginInterface => {
+export const Grasp = (globalConfig: ConfigParams): PluginInterface => {
   const metadata = {
     kind: 'execute',
   };
@@ -9,29 +10,34 @@ export const Grasp = (globalConfig: YourGlobalConfig): PluginInterface => {
   /**
    * Execute's strategy description here.
    */
-  const execute = async (inputs: PluginParams[]): Promise<PluginParams[]> => {
+  const execute = async (
+    inputs: PluginParams[],
+    config?: ConfigParams
+  ): Promise<PluginParams[]> => {
+    const mergedConfig = Object.assign({}, globalConfig, config);
+    const validatedConfig = validateConfig(mergedConfig);
+
     return inputs.map(input => {
-      // your logic here
-      globalConfig;
+      const validatedInput = validateInput(input);
+      const inputAndConfig = Object.assign({}, validatedInput, validatedConfig);
 
-      // TODO: Check the provided input -> Is everything provided to run the plugin?
-      if (!('carbon' in input)) {
-        return input;
-      }
-      // TODO: handle all conversions. add an option to turn them off
+      const units = inputAndConfig.units ? inputAndConfig.units : 1;
+      const carbon = inputAndConfig.carbon * units;
 
-      // TODO: Output
       return {
         ...input,
-        ...cupsOfCoffee(input),
+        ...cupsOfCoffee(carbon),
       };
     });
   };
 
-  const cupsOfCoffee = (input: PluginParams) => {
+  /*
+   * Calculate cups of coffee
+   */
+  const cupsOfCoffee = (carbon: number) => {
     return {
       'cups-of-coffee': {
-        value: input['carbon'] / 60,
+        value: carbon / 60,
         source: 'https://www.gcrmag.com/coffees-carbon-footprint/',
       },
     };

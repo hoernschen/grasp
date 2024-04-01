@@ -1,9 +1,5 @@
 const CUSTOM_ERRORS = [
   'InputValidationError',
-  'UnsupportedValueError',
-  'ReadFileError',
-  'WriteFileError',
-  'MakeDirectoryError',
   'ConfigValidationError',
 ] as const;
 
