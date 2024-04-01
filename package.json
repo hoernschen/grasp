@@ -10,7 +10,8 @@
     "url": "https://github.com/hoernschen/grasp/issues/new"
   },
   "dependencies": {
-    "typescript": "^5.4.3"
+    "typescript": "^5.4.3",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@babel/core": "7.22.10",
