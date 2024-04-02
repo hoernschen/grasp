@@ -26,9 +26,21 @@ export const Grasp = (globalConfig: ConfigParams): PluginInterface => {
 
       return {
         ...input,
+        ...bananas(carbon),
         ...cupsOfCoffee(carbon),
+        ...barsOfChocolate(carbon),
       };
     });
+  };
+
+  /*
+   * Calculate bananas
+   */
+  const bananas = (carbon: number) => {
+    const gPerBanana = 150;
+    return {
+      bananas: carbon / (1.28 * gPerBanana),
+    };
   };
 
   /*
@@ -37,8 +49,24 @@ export const Grasp = (globalConfig: ConfigParams): PluginInterface => {
   const cupsOfCoffee = (carbon: number) => {
     return {
       'cups-of-coffee': {
-        value: carbon / 60,
-        source: 'https://www.gcrmag.com/coffees-carbon-footprint/',
+        espresso: carbon / 280,
+        'flat-white': carbon / 340,
+        cappuccino: carbon / 410,
+        'caffee-latte': carbon / 550,
+      },
+    };
+  };
+
+  /*
+   * Calculate bars of chocolate
+   */
+  const barsOfChocolate = (carbon: number) => {
+    const gPerBar = 100;
+    return {
+      'bars-of-chocolate': {
+        dark: carbon / (1.67 * gPerBar),
+        milk: carbon / (4.19 * gPerBar),
+        white: carbon / (4.1 * gPerBar),
       },
     };
   };
