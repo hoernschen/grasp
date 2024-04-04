@@ -30,6 +30,7 @@ export const Grasp = (globalConfig: ConfigParams): PluginInterface => {
         ...cupsOfCoffee(carbon),
         ...barsOfChocolate(carbon),
         ...socialCostOfCarbon(carbon),        
+        ...deathPerTon(carbon),
       };
     });
   };
@@ -91,6 +92,17 @@ export const Grasp = (globalConfig: ConfigParams): PluginInterface => {
       },
     };
   };
+
+  /*
+   * Calculates the premature deaths per ton of carbon
+   */
+    const deathPerTon = (carbon: number) => {
+      const carbonMetricTon = carbon / 1000000;
+      const tonsPerDeath = 1000;
+      return {
+        prematureDeaths: carbonMetricTon / tonsPerDeath,
+      };
+    };
 
   return {
     metadata,
