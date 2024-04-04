@@ -1,8 +1,8 @@
-import {ConfigParams} from '../types/general';
-import {PluginInterface, PluginParams} from '../types/interface';
-import {validateConfig, validateInput} from './validation';
+import {ConfigParams} from '../../types/general';
+import {PluginInterface, PluginParams} from '../../types/interface';
+import {validateConfig, validateInput} from '../../validation';
 
-export const Grasp = (globalConfig: ConfigParams): PluginInterface => {
+export const Bananas = (globalConfig: ConfigParams): PluginInterface => {
   const metadata = {
     kind: 'execute',
   };
@@ -27,8 +27,6 @@ export const Grasp = (globalConfig: ConfigParams): PluginInterface => {
       return {
         ...input,
         ...bananas(carbon),
-        ...cupsOfCoffee(carbon),
-        ...barsOfChocolate(carbon),
       };
     });
   };
@@ -40,34 +38,6 @@ export const Grasp = (globalConfig: ConfigParams): PluginInterface => {
     const gPerBanana = 150;
     return {
       bananas: carbon / (1.28 * gPerBanana),
-    };
-  };
-
-  /*
-   * Calculate cups of coffee
-   */
-  const cupsOfCoffee = (carbon: number) => {
-    return {
-      'cups-of-coffee': {
-        espresso: carbon / 280,
-        'flat-white': carbon / 340,
-        cappuccino: carbon / 410,
-        'caffee-latte': carbon / 550,
-      },
-    };
-  };
-
-  /*
-   * Calculate bars of chocolate
-   */
-  const barsOfChocolate = (carbon: number) => {
-    const gPerBar = 100;
-    return {
-      'bars-of-chocolate': {
-        dark: carbon / (1.67 * gPerBar),
-        milk: carbon / (4.19 * gPerBar),
-        white: carbon / (4.1 * gPerBar),
-      },
     };
   };
 

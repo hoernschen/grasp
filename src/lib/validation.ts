@@ -1,8 +1,8 @@
 import {z} from 'zod';
-import {ConfigParams} from '../types/general';
-import {PluginParams} from '../types/interface';
+import {ConfigParams} from './types/general';
+import {PluginParams} from './types/interface';
 
-import {allDefined, validate} from '../util/validations';
+import {allDefined, validate} from './util/validations';
 
 export const validateConfig = (config: ConfigParams) => {
   const schema = z.object({
