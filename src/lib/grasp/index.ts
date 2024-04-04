@@ -29,6 +29,7 @@ export const Grasp = (globalConfig: ConfigParams): PluginInterface => {
         ...bananas(carbon),
         ...cupsOfCoffee(carbon),
         ...barsOfChocolate(carbon),
+        ...socialCostOfCarbon(carbon),        
       };
     });
   };
@@ -67,6 +68,21 @@ export const Grasp = (globalConfig: ConfigParams): PluginInterface => {
         dark: carbon / (1.67 * gPerBar),
         milk: carbon / (4.19 * gPerBar),
         white: carbon / (4.1 * gPerBar),
+      },
+    };
+  };
+
+  const socialCostOfCarbon = (carbon: number) => {
+    //carbon is currently in gram, SCC is refering to tons, therefore 
+    const carbonMetricTon = carbon / 1000000;
+    const cost2020 = 3557;
+    const cost2025 = 4185;
+    const cost2050 = 16552;
+    return {
+      'Social-Cost-of-Carbon per year': {
+        2020: carbonMetricTon / 10000 * cost2020,
+        2025: carbonMetricTon / 10000 * cost2025,
+        2050: carbonMetricTon / 10000 * cost2050,
       },
     };
   };
