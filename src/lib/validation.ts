@@ -7,6 +7,7 @@ import { allDefined, validate } from './util/validations';
 export const validateConfig = (config: ConfigParams) => {
   const schema = z.object({
     units: z.number().gte(0).optional(),
+    metrical: z.boolean().optional(),
   });
 
   return validate<z.infer<typeof schema>>(schema, config);

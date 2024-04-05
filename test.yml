@@ -8,6 +8,7 @@ aggregation:
     - 'cups-of-coffee/espresso'
     - 'bananas'
     - 'bars-of-chocolate/dark'
+    - 'distance/air'
   type: 'both'
 initialize:
   outputs:
@@ -38,6 +39,9 @@ initialize:
     chocolate:
       method: Chocolate
       path: 'grasp'
+    distance:
+      method: Distance
+      path: 'grasp'
 tree:
   children:
     child-0:
@@ -53,6 +57,7 @@ tree:
         - coffee
         - bananas
         - chocolate
+        - distance
       inputs:
         - timestamp: 2023-07-06T00:00
           duration: 1

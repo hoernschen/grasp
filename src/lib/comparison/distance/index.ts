@@ -2,7 +2,7 @@ import { ConfigParams } from '../../types/general';
 import { PluginInterface, PluginParams } from '../../types/interface';
 import { validateConfig, validateInput } from '../../validation';
 
-export const Chocolate = (globalConfig: ConfigParams): PluginInterface => {
+export const Distance = (globalConfig: ConfigParams): PluginInterface => {
   const metadata = {
     kind: 'execute',
   };
@@ -23,23 +23,27 @@ export const Chocolate = (globalConfig: ConfigParams): PluginInterface => {
 
       const units: number = inputAndConfig.units ?? 1;
       const carbon = inputAndConfig.carbon * units;
+      const metrical: boolean = inputAndConfig.metrical ?? true;
 
       return {
         ...input,
-        ...barsOfChocolate(carbon),
+        ...distancePerTransportType(carbon, metrical),
       };
     });
   };
 
   /*
-   * Calculate bars of chocolate
+   * Distance per transport type
    */
-  const barsOfChocolate = (carbon: number) => {
-    const gPerBar = 100;
+  const distancePerTransportType = (carbon: number, metrical: boolean) => {
+    const conversionFactor = metrical ? 1 : 0.6213711922;
     return {
-      'bars-of-chocolate/dark': carbon / (1.67 * gPerBar),
-      'bars-of-chocolate/milk': carbon / (4.19 * gPerBar),
-      'bars-of-chocolate/white': carbon / (4.1 * gPerBar),
+      'distance/air': (carbon / 122.72) * conversionFactor,
+      'distance/rail': (carbon / 22.35) * conversionFactor,
+      'distance/bus': (carbon / 63.37) * conversionFactor,
+      'distance/large-car': (carbon / 193.96) * conversionFactor,
+      'distance/medium-car': (carbon / 144.65) * conversionFactor,
+      'distance/motorcycle': (carbon / 41.15) * conversionFactor,
     };
   };
 

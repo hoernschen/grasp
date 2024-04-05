@@ -21,7 +21,7 @@ export const Bananas = (globalConfig: ConfigParams): PluginInterface => {
       const validatedInput = validateInput(input);
       const inputAndConfig = Object.assign({}, validatedInput, validatedConfig);
 
-      const units = inputAndConfig.units ? inputAndConfig.units : 1;
+      const units: number = inputAndConfig.units ?? 1;
       const carbon = inputAndConfig.carbon * units;
 
       return {
