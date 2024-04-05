@@ -1,13 +1,13 @@
-import { Bananas } from '../../../../lib/comparison/bananas';
+import { Chocolate } from '../../../../lib/comparison/chocolate';
 
 import { ERRORS } from '../../../../lib/util/errors';
 
 const { InputValidationError } = ERRORS;
 
-describe('lib/comparison/bananas: ', () => {
-  describe('Bananas(): ', () => {
+describe('lib/comparison/chocolate: ', () => {
+  describe('Chocolate(): ', () => {
     it('has metadata field.', () => {
-      const plugin = Bananas({});
+      const plugin = Chocolate({});
 
       expect(plugin).toHaveProperty('metadata');
       expect(plugin).toHaveProperty('execute');
@@ -17,7 +17,7 @@ describe('lib/comparison/bananas: ', () => {
 
     describe('execute(): ', () => {
       it('empty input', async () => {
-        const plugin = Bananas({});
+        const plugin = Chocolate({});
         const inputs = [{}];
 
         expect.assertions(1);

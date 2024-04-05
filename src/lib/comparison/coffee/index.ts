@@ -1,6 +1,6 @@
-import {ConfigParams} from '../../types/general';
-import {PluginInterface, PluginParams} from '../../types/interface';
-import {validateConfig, validateInput} from '../../validation';
+import { ConfigParams } from '../../types/general';
+import { PluginInterface, PluginParams } from '../../types/interface';
+import { validateConfig, validateInput } from '../../validation';
 
 export const Coffee = (globalConfig: ConfigParams): PluginInterface => {
   const metadata = {
