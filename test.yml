@@ -1,6 +1,15 @@
 name: basic-demo
 description:
 tags:
+aggregation:
+  metrics:
+    - 'energy'
+    - 'carbon'
+    - 'cups-of-coffee/espresso'
+    - 'bananas'
+    - 'bars-of-chocolate/dark'
+    - 'distance/air'
+  type: 'both'
 initialize:
   outputs:
     - yaml
@@ -21,8 +30,17 @@ initialize:
       path: '@grnsft/if-plugins'
       global-config:
         functional-unit-time: '5 minutes'
-    grasp:
-      method: Grasp
+    coffee:
+      method: Coffee
+      path: 'grasp'
+    bananas:
+      method: Bananas
+      path: 'grasp'
+    chocolate:
+      method: Chocolate
+      path: 'grasp'
+    distance:
+      method: Distance
       path: 'grasp'
 tree:
   children:
@@ -36,7 +54,10 @@ tree:
         - sci-e
         - sci-o
         - sci
-        - grasp
+        - coffee
+        - bananas
+        - chocolate
+        - distance
       inputs:
         - timestamp: 2023-07-06T00:00
           duration: 1

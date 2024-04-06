@@ -1,8 +1,8 @@
-import {ZodIssue, ZodIssueCode, ZodSchema} from 'zod';
+import { ZodIssue, ZodIssueCode, ZodSchema } from 'zod';
 
-import {ERRORS} from './errors';
+import { ERRORS } from './errors';
 
-const {InputValidationError} = ERRORS;
+const { InputValidationError } = ERRORS;
 
 /**
  * At least one property defined handler.
@@ -25,7 +25,7 @@ const prettifyErrorMessage = (issues: string) => {
 
   return issuesArray.map((issue: ZodIssue) => {
     const code = issue.code;
-    let {path, message} = issue;
+    let { path, message } = issue;
 
     if (issue.code === ZodIssueCode.invalid_union) {
       message = issue.unionErrors[0].issues[0].message;

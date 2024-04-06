@@ -1,4 +1,4 @@
-import {ConfigParams} from './general';
+import { ConfigParams } from './general';
 
 export type PluginParams = Record<string, any>;
 
