@@ -26,18 +26,20 @@ export const Bananas = (globalConfig: ConfigParams): PluginInterface => {
 
       return {
         ...input,
-        ...bananas(carbon),
+        ...displacedByClimateCrisis(carbon),
       };
     });
   };
 
   /*
-   * Calculate bananas
+   * Calculate the amount of displaced humans by climate change per ton of Co2e.
    */
-  const bananas = (carbon: number) => {
-    const gPerBanana = 150;
+  const displacedByClimateCrisis = (carbon: number) => {
+    //Check documentation of the plugin to understand where this number comes from
+    const displacedByTonofCarbon = 0.0004;
+    const carbonInMetricTon = carbon / 1000000;
     return {
-      bananas: carbon / (1.28 * gPerBanana),
+      'displaced-by-climate-crisis': displacedByTonofCarbon / carbonInMetricTon,
     };
   };
 
