@@ -1,96 +1,42 @@
-# if-plugin-template
+# Grasp - A collection of calculations to convert software's carbon emission into something easier to "grasp"
 
-`if-plugin-template` is an environmental impact calculator template which exposes an API for [IF](https://github.com/Green-Software-Foundation/if) to retrieve energy and embodied carbon estimates.
+This is a collection of [Impact Framework](https://github.com/Green-Software-Foundation/if) Plugins with the goal to make the carbon metric, calculated before in the pipeline, easier to understand. It is split into two types of metrics: `impact` metrics and `comparison` metrics
 
-## Implementation
+Every calculation in this repo is carefully researched and validated. You can find more detailed information about the background of each metric with sources [in the wiki](https://github.com/hoernschen/grasp/wiki).
 
-Here can be implementation details of the plugin. For example which API is used, transformations and etc.
+You found a more current calculation to one of our metrics or want to propose another metric? Please consider open an [issue](https://github.com/hoernschen/grasp/issues/new)
 
-## Usage
+## Impact
 
-To run the `<YOUR-CUSTOM-PLUGIN>`, an instance of `PluginInterface` must be created. Then, the plugin's `execute()` method can be called, passing required arguments to it.
+These plugins take the carbon emission and show what kind of real world impact it can have on the world and its people
 
-This is how you could run the model in Typescript:
+| Plugin | Description |
+|--------------- | --------------- |
+| [Social Cost of Carbon (SCC)](./src/lib/impact/SCC/Readme.md) | The amount of damages (in $) that can occur after emitting this amount of carbon (with different years) |
+| [Death](./src/lib/impact/death/Readme.md) | The amount of deaths that can occur after emitting this amount of carbon |
+| [Displacement](./src/lib/impact/displacement/Readme.md) | The amount of people that have to change their place of living after emitting this amout of carbon | 
 
-```typescript
-async function runPlugin() {
-  const newModel = await new MyCustomPlugin().configure(params);
-  const usage = await newModel.calculate([
-    {
-      timestamp: '2021-01-01T00:00:00Z',
-      duration: '15s',
-      'cpu-util': 34,
-    },
-    {
-      timestamp: '2021-01-01T00:00:15Z',
-      duration: '15s',
-      'cpu-util': 12,
-    },
-  ]);
+## Comparison
 
-  console.log(usage);
-}
+These plugins take the carbon emissions and compare it with the emissions of a real world product or action.
 
-runPlugin();
-```
+| Plugin  | Description |
+|-------------- | -------------- |
+| [Bananas](./src/lib/comparison/bananas/Readme.md) | The amount of bananas that emit the same amount of carbon |
+| [Chocolate](./src/lib/comparison/chocolate/Readme.md) | The amount of chocolate bars (with different types) that emit the same amount of carbon |
+| [Coffee](./src/lib/comparison/coffee/Readme.md) | the amount of cups of coffee (with different varieties) that emit the same amount of carbon |
+| [Distance](./src/lib/comparison/distance/Readme.md) | The distance you can travel (with different forms of transportation) while emitting the same amount of carbon |
 
-## Testing model integration
+## Install
 
-### Using local links
-
-For using locally developed model in `IF Framework` please follow these steps: 
-
-1. On the root level of a locally developed model run `npm link`, which will create global package. It uses `package.json` file's `name` field as a package name. Additionally name can be checked by running `npm ls -g --depth=0 --link=true`.
-2. Use the linked model in impl by specifying `name`, `method`, `path` in initialize models section. 
-
-```yaml
-name: plugin-demo-link
-description: loads plugin
-tags: null
-initialize:
-  plugins:
-    my-custom-plugin:
-      method: MyCustomPlugin
-      path: "<name-field-from-package.json>"
-      global-config:
-        ...
-...
-```
-
-### Using directly from Github
-
-You can simply push your model to the public Github repository and pass the path to it in your impl.
-For example, for a model saved in `github.com/my-repo/my-model` you can do the following:
-
-npm install your model: 
+You can install this collection by running the following command:
 
 ```
-npm install -g https://github.com/my-repo/my-model
+npm install -g https://github.com/hoernschen/grasp
 ```
 
-Then, in your `impl`, provide the path in the model instantiation. You also need to specify which class the model instantiates. In this case you are using the `PluginInterface`, so you can specify `OutputModel`. 
+We have provided a working example manifest file for you to test the plugins in this repo:
 
-```yaml
-name: plugin-demo-git
-description: loads plugin
-tags: null
-initialize:
-  plugins:
-    my-custom-plugin:
-      method: MyCustomPlugin
-      path: https://github.com/my-repo/my-model
-      global-config:
-        ...
-...
-```
-
-Now, when you run the `manifest` using the IF CLI, it will load the model automatically. Run using:
-
-```sh
-ie --manifest <path-to-your-impl> --output <path-to-save-output>
-```
-
-Example for the test manifest file in this repo:
 ```sh
 ie --manifest test.yml --output output
 ```

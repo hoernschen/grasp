@@ -39,7 +39,7 @@ export const Coffee = (globalConfig: ConfigParams): PluginInterface => {
       'cups-of-coffee/espresso': carbon / 280,
       'cups-of-coffee/flat-white': carbon / 340,
       'cups-of-coffee/cappuccino': carbon / 410,
-      'cups-of-coffee/caffee-latte': carbon / 550,
+      'cups-of-coffee/latte': carbon / 550,
     };
   };
 

@@ -12,7 +12,7 @@ aggregation:
     - 'social-cost-of-carbon/2050'
     - 'premature-deaths'
     - 'displaced-by-climate-crisis'
-  type: 'both'
+  type: 'horizontal'
 initialize:
   outputs:
     - yaml

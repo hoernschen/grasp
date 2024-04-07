@@ -39,7 +39,7 @@ export const Displacement = (globalConfig: ConfigParams): PluginInterface => {
     const displacedByTonofCarbon = 0.0004;
     const carbonInMetricTon = carbon / 1000000;
     return {
-      'displaced-by-climate-crisis': carbonInMetricTon / displacedByTonofCarbon,
+      'displaced-by-climate-crisis': carbonInMetricTon * displacedByTonofCarbon,
     };
   };
 
