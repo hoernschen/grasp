@@ -2,7 +2,7 @@ import { ConfigParams } from '../../types/general';
 import { PluginInterface, PluginParams } from '../../types/interface';
 import { validateConfig, validateInput } from '../../validation';
 
-export const Bananas = (globalConfig: ConfigParams): PluginInterface => {
+export const SCC = (globalConfig: ConfigParams): PluginInterface => {
   const metadata = {
     kind: 'execute',
   };

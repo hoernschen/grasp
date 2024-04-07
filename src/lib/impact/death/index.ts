@@ -2,7 +2,7 @@ import { ConfigParams } from '../../types/general';
 import { PluginInterface, PluginParams } from '../../types/interface';
 import { validateConfig, validateInput } from '../../validation';
 
-export const Bananas = (globalConfig: ConfigParams): PluginInterface => {
+export const Death = (globalConfig: ConfigParams): PluginInterface => {
   const metadata = {
     kind: 'execute',
   };
@@ -38,7 +38,7 @@ export const Bananas = (globalConfig: ConfigParams): PluginInterface => {
     const carbonMetricTon = carbon / 1000000;
     const tonsPerDeath = 1000;
     return {
-      prematureDeaths: carbonMetricTon / tonsPerDeath,
+      'premature-deaths': carbonMetricTon / tonsPerDeath,
     };
   };
 

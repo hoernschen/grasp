@@ -9,6 +9,9 @@ aggregation:
     - 'bananas'
     - 'bars-of-chocolate/dark'
     - 'distance/air'
+    - 'social-cost-of-carbon/2050'
+    - 'premature-deaths'
+    - 'displaced-by-climate-crisis'
   type: 'both'
 initialize:
   outputs:
@@ -42,6 +45,15 @@ initialize:
     distance:
       method: Distance
       path: 'grasp'
+    scc:
+      method: SCC
+      path: 'grasp'
+    death:
+      method: Death
+      path: 'grasp'
+    displacement:
+      method: Displacement
+      path: 'grasp'
 tree:
   children:
     child-0:
@@ -58,6 +70,9 @@ tree:
         - bananas
         - chocolate
         - distance
+        - scc
+        - death
+        - displacement
       inputs:
         - timestamp: 2023-07-06T00:00
           duration: 1
