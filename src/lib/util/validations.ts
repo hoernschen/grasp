@@ -1,6 +1,6 @@
 import { ZodIssue, ZodIssueCode, ZodSchema } from 'zod';
 
-import { ERRORS } from './errors';
+import { ERRORS } from '@grnsft/if-core/utils';
 
 const { InputValidationError } = ERRORS;
 

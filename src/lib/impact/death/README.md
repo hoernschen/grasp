@@ -39,9 +39,9 @@ tags:
 initialize:
   plugins:
     death:
+      path: 'https://github.com/hoernschen/grasp'
       method: Death 
-      path: 'grasp'
-      global-config:
+      config:
         units: 1000
 tree:
   children:

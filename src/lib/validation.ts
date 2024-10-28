@@ -1,6 +1,5 @@
 import { z } from 'zod';
-import { ConfigParams } from './types/general';
-import { PluginParams } from './types/interface';
+import { PluginParams, ConfigParams } from '@grnsft/if-core/types';
 
 import { allDefined, validate } from './util/validations';
 

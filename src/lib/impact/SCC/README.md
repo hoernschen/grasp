@@ -46,9 +46,9 @@ tags:
 initialize:
   plugins:
     scc:
+      path: 'https://github.com/hoernschen/grasp'
       method: SCC 
-      path: 'grasp'
-      global-config:
+      config:
         units: 1000
 tree:
   children:

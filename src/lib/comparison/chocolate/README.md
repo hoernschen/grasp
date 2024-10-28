@@ -48,9 +48,9 @@ tags:
 initialize:
   plugins:
     chocolate:
+      path: 'https://github.com/hoernschen/grasp'
       method: Chocolate
-      path: 'grasp'
-      global-config:
+      config:
         units: 1000
 tree:
   children:

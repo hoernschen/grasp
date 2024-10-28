@@ -39,9 +39,9 @@ tags:
 initialize:
   plugins:
     bananas:
+      path: 'https://github.com/hoernschen/grasp'
       method: Bananas
-      path: 'grasp'
-      global-config:
+      config:
         units: 1000
 tree:
   children:

@@ -1,48 +1,34 @@
-import { ConfigParams } from '../../types/general';
-import { PluginInterface, PluginParams } from '../../types/interface';
+import { PluginFactory } from '@grnsft/if-core/interfaces';
+import { PluginParams, ConfigParams } from '@grnsft/if-core/types';
 import { validateConfig, validateInput } from '../../validation';
 
-export const Bananas = (globalConfig: ConfigParams): PluginInterface => {
-  const metadata = {
-    kind: 'execute',
-  };
-
-  /**
-   * Execute's strategy description here.
-   */
-  const execute = async (
-    inputs: PluginParams[],
-    config?: ConfigParams
-  ): Promise<PluginParams[]> => {
-    const mergedConfig = Object.assign({}, globalConfig, config);
-    const validatedConfig = validateConfig(mergedConfig);
-
-    return inputs.map(input => {
-      const validatedInput = validateInput(input);
-      const inputAndConfig = Object.assign({}, validatedInput, validatedConfig);
-
-      const units: number = inputAndConfig.units ?? 1;
-      const carbon = inputAndConfig.carbon * units;
-
-      return {
-        ...input,
-        ...bananas(carbon),
-      };
-    });
-  };
-
-  /*
-   * Calculate bananas
-   */
-  const bananas = (carbon: number) => {
-    const gPerBanana = 150;
-    return {
-      bananas: carbon / (1.28 * gPerBanana),
-    };
-  };
-
+/*
+ * Calculate bananas
+ */
+const bananas = (carbon: number) => {
+  const gPerBanana = 150;
   return {
-    metadata,
-    execute,
+    bananas: carbon / (1.28 * gPerBanana),
   };
 };
+
+export const Bananas = PluginFactory({
+  configValidation: (config: ConfigParams) => {
+    return validateConfig(config);
+  },
+
+  inputValidation: (input: PluginParams) => {
+    return validateInput(input);
+  },
+
+  implementation: async (inputs: PluginParams[], config: ConfigParams) => {
+    const inputAndConfig = Object.assign({}, inputs, config);
+    const units: number = inputAndConfig.units ?? 1;
+    const carbon = inputAndConfig.carbon * units;
+    return inputs.map(input => {
+      // logic
+      bananas(carbon);
+      return input;
+    });
+  },
+});

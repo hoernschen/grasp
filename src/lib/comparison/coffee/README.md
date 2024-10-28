@@ -49,9 +49,9 @@ tags:
 initialize:
   plugins:
     coffee:
+      path: 'https://github.com/hoernschen/grasp'
       method: Coffee 
-      path: 'grasp'
-      global-config:
+      config:
         units: 1000
 tree:
   children:

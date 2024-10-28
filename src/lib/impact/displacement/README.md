@@ -18,7 +18,7 @@ This plugin calculates the number of people that have to leave their home after 
 
 ## Returns
 
-`displaced-by-climate-crisis`: The number of people that have to leave their home from emitting the amount of carbon
+`displaced-people`: The number of people that have to leave their home from emitting the amount of carbon
 
 ## Calculation
 
@@ -37,9 +37,9 @@ tags:
 initialize:
   plugins:
     displacement:
+      path: 'https://github.com/hoernschen/grasp'
       method: Displacement
-      path: 'grasp'
-      global-config:
+      config:
         units: 1000
 tree:
   children:

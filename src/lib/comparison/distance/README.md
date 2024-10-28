@@ -57,9 +57,9 @@ tags:
 initialize:
   plugins:
     distance:
+      path: 'https://github.com/hoernschen/grasp'
       method: Distance
-      path: 'grasp'
-      global-config:
+      config:
         units: 1000
         metrical: true
 tree:
